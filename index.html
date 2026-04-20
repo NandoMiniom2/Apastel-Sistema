@@ -2,324 +2,353 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>SISTEMA CENTRAL APASTEL - FaC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGD - SISTEMA INTEGRADO DE GESTÃO DE DADOS | FaC</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
 
         :root {
-            --bg-color: #0a0a0a;
-            --border-color: #333;
-            --text-color: #c0c0c0;
-            --class-k: #8b0000;
-            --class-p: #0047ab;
-            --class-zp: #8a2be2; 
-            --class-white: #ffffff;
-            --glow: 0 0 10px rgba(255, 255, 255, 0.1);
+            --bg-main: #080808;
+            --bg-sidebar: #0d0d0d;
+            --accent-red: #d32f2f;
+            --accent-blue: #1976d2;
+            --accent-purple: #7b1fa2;
+            --accent-gold: #ffa000;
+            --text-primary: #e0e0e0;
+            --text-secondary: #9e9e9e;
+            --border: #262626;
+            --shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
-        * { box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Share Tech Mono', monospace;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
             display: flex;
             height: 100vh;
+            overflow: hidden;
+            line-height: 1.6;
         }
 
-        /* Efeito de Scanline */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-            background-size: 100% 3px, 3px 100%;
-            pointer-events: none;
-            z-index: 1000;
-        }
-
-        /* Sidebar de Comando */
+        /* Sidebar Executiva */
         nav {
-            width: 250px;
-            background: #000;
-            border-right: 2px solid var(--border-color);
+            width: 300px;
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
-            padding: 20px;
-            z-index: 10;
+            padding: 25px;
+            z-index: 100;
         }
 
-        .nav-header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
+        .brand {
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 25px;
         }
 
-        .nav-header h2 { font-size: 18px; color: var(--class-k); text-shadow: 0 0 5px #f00; }
+        .brand h1 { font-size: 16px; font-weight: 800; letter-spacing: 2px; color: var(--accent-red); }
+        .brand p { font-size: 10px; color: var(--text-secondary); margin-top: 5px; }
 
-        .nav-item {
-            padding: 12px;
-            margin: 5px 0;
+        .nav-group { margin-bottom: 20px; }
+        .nav-label { font-size: 9px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 10px; letter-spacing: 1px; }
+
+        .nav-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            background: none;
             border: 1px solid transparent;
+            color: var(--text-secondary);
+            text-align: left;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.2s;
+            margin-bottom: 5px;
             text-decoration: none;
-            color: var(--text-color);
-            font-size: 14px;
         }
 
-        .nav-item:hover { background: #111; border-color: var(--border-color); }
-        .nav-item.active { background: #1a1a1a; border-left: 4px solid var(--class-k); }
+        .nav-btn:hover { background: #1a1a1a; color: #fff; border-color: #333; }
+        .nav-btn.active { background: #1a1a1a; color: #fff; border-left: 3px solid var(--active-color, var(--accent-red)); }
 
-        /* Área de Conteúdo Principal */
+        /* Área de Visualização de Dados */
         main {
             flex-grow: 1;
-            padding: 40px;
             overflow-y: auto;
+            padding: 60px;
             position: relative;
         }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-        }
+        .module { display: none; max-width: 1000px; margin: 0 auto; animation: fadeIn 0.4s ease-out; }
+        .module.active { display: block; }
 
-        .status-box { font-size: 12px; color: #666; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .document-block {
-            background: #0d0d0d;
-            border: 1px solid var(--border-color);
+        /* Estilo Documento Oficial */
+        .doc-header { margin-bottom: 40px; border-bottom: 2px solid var(--border); padding-bottom: 20px; }
+        .doc-header h2 { font-size: 32px; font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
+        .doc-meta { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text-secondary); display: flex; gap: 30px; margin-top: 10px; }
+
+        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
+        
+        .card {
+            background: #0f0f0f;
+            border: 1px solid var(--border);
             padding: 25px;
-            margin-bottom: 30px;
             position: relative;
+            box-shadow: var(--shadow);
         }
 
-        .doc-header {
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: var(--bg-color);
-            padding: 0 10px;
-            font-weight: bold;
-            font-size: 12px;
-            color: #888;
+        .card h3 { font-size: 14px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 15px; border-left: 3px solid var(--accent-red); padding-left: 10px; }
+        .card p { font-size: 14px; color: #bbb; text-align: justify; }
+
+        .alert-box {
+            background: rgba(211, 47, 47, 0.1);
+            border: 1px solid var(--accent-red);
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 13px;
         }
 
-        h1, h2, h3 { text-transform: uppercase; letter-spacing: 2px; }
-        .red-text { color: var(--class-k); text-shadow: 0 0 5px #8b0000; }
-        .blue-text { color: var(--class-p); text-shadow: 0 0 5px #0047ab; }
-        .purple-text { color: var(--class-zp); text-shadow: 0 0 5px var(--class-zp); }
-
-        .red-glow { filter: drop-shadow(0 0 10px var(--class-k)); }
-        .purple-glow { filter: drop-shadow(0 0 10px var(--class-zp)); }
-        .blue-glow { filter: drop-shadow(0 0 10px var(--class-p)); }
-
-        .scp-table {
+        /* Imagens Estilo Satélite/Empresa */
+        .img-box {
             width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: #111;
+            margin: 30px 0;
+            border: 1px solid var(--border);
+            padding: 5px;
+            background: #000;
         }
 
-        .scp-table th, .scp-table td {
-            border: 1px solid #333;
-            padding: 12px;
-            text-align: left;
-        }
+        .img-box img { width: 100%; height: auto; display: block; opacity: 0.9; }
+        .img-caption { font-size: 10px; color: var(--text-secondary); text-align: center; margin-top: 10px; font-family: 'JetBrains Mono', monospace; }
 
-        .scp-table th { background: #1a1a1a; width: 30%; color: #888; }
+        /* Cores Temáticas */
+        .theme-white .doc-header h2 { color: #fff; }
+        .theme-blue .doc-header h2 { color: var(--accent-blue); }
+        .theme-purple .doc-header h2 { color: var(--accent-purple); }
+        .theme-gold .doc-header h2 { color: var(--accent-gold); }
 
-        .alert-banner {
-            border: 2px solid var(--class-k);
-            padding: 15px;
-            color: var(--class-k);
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0;
-            animation: pulse 2s infinite;
-        }
+        /* Scrollbar Profissional */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
 
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        .img-container {
-            text-align: center;
-            margin: 20px 0;
-            padding: 10px;
-            background: #050505;
-            border: 1px solid #222;
-        }
-
-        .img-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #333;
-        }
-
-        @media (max-width: 800px) {
-            body { flex-direction: column; }
-            nav { width: 100%; height: auto; border-right: none; border-bottom: 2px solid var(--border-color); }
-        }
-
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #333; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="nav-header">
-            <h2>APASTEL_OS v4.0</h2>
-            <p style="font-size: 10px;">CONEXÃO_ARACAJU_2026</p>
+    <nav id="sidebar">
+        <div class="brand">
+            <h1>REPUBLIC OF APASTEL</h1>
+            <p>CONSOLIDATED DATA ADMINISTRATION v2.6</p>
         </div>
-        <a href="#inicio" class="nav-item active">DADOS_APASTEL</a>
-        <a href="#classes-militares" class="nav-item">HIERARQUIA_MILITAR</a>
-        <a href="#fac-pesquisa" class="nav-item">CENTRAL_FaC</a>
-        <a href="#class-pnf" class="nav-item purple-text" style="font-weight: bold;">PROJETO_NAO_FISICO</a>
+
+        <div class="nav-group">
+            <p class="nav-label">Administração Central</p>
+            <button class="nav-btn active" onclick="showModule('nacional', this, '#d32f2f')">DADOS_NACIONAIS</button>
+            <button class="nav-btn" onclick="showModule('governo', this, '#d32f2f')">ALTA_ADMINISTRACAO</button>
+        </div>
+
+        <div class="nav-group">
+            <p class="nav-label">Divisões Tecnológicas</p>
+            <button class="nav-btn" onclick="showModule('espacial', this, '#ffa000')">AEROESPACIAL_MISSAO</button>
+            <button class="nav-btn" onclick="showModule('fac', this, '#1976d2')">P&D_FRAGMENTADA_FaC</button>
+        </div>
+
+        <div class="nav-group">
+            <p class="nav-label">Setor de Defesa</p>
+            <button class="nav-btn" onclick="showModule('militar', this, '#d32f2f')">HIERARQUIA_DEFESA</button>
+            <button class="nav-btn" onclick="showModule('pnf', this, '#7b1fa2')">PROTOCOLO_PNF</button>
+        </div>
+
+        <div style="margin-top: auto; padding-top: 20px;">
+            <p style="font-size: 8px; color: #444; font-family: 'JetBrains Mono';">USER_AUTH: 2026.04.19.22.54<br>STATION: ARACAJU_BRASIL</p>
+        </div>
     </nav>
 
     <main>
-        <header>
-            <div class="status-box">
-                SISTEMA: OPERACIONAL<br>
-                RADIAÇÃO: 0.04mSv (ESTÁVEL)
-            </div>
-            <div class="status-box" style="text-align: right;">
-                LOCALIZAÇÃO: APASTEL CENTRAL<br>
-                DATA: 19.04.2026
-            </div>
-        </header>
-
-        <section id="inicio">
-            <h1 class="red-text">DADOS GOVERNAMENTAIS: APASTEL</h1>
-            <p>Este terminal contém informações sigilosas sobre a superpotência de Apastel e as operações da FaC.</p>
-            
-            <div class="img-container">
-                <img src="Apastel.png" alt="Bandeira de Apastel">
-            </div>
-
-            <div class="document-block">
-                <div class="doc-header">HISTÓRICO_E_ECONOMIA</div>
-                <p>> Apastel começou bem pois vendeu muito recursos sendo país neutro até a chegada da primeira guerra mundial. Inglaterra perdeu e Alemanha também pelo Apastel.</p>
-                <p>> Na Segunda iniciou sua grande super potência, Apastel ficou em primeiro lugar em militarismo ou economia.</p>
-                <p>> Por enquanto agora, EUA lidera o top 1.</p>
-                <p>> Moradores de ruas são muito, mas muito baixos, quase zero, e os que são, são basicamente um morador médio ou alto nível dos EUA. Apastel focou muito em si mesma ela pensou no futuro, igual os EUA, não ajudou a Inglaterra esperou ficar sem recursos e pediu pros EUA recurso assim ganhando grana e tal na segunda guerra.</p>
-            </div>
-
-            <div class="document-block">
-                <div class="doc-header">SISTEMA_DE_GOVERNO</div>
-                <p>> Aqui são 4 presidentes. Os 3 têm que concordar com o outro que for colocar algo, se um recusar, é rejeitada.</p>
-            </div>
-        </section>
-
-        <section id="classes-militares" style="margin-top: 50px;">
-            <h1 class="red-text">HIERARQUIA MILITAR DE APASTEL</h1>
-            <p>Progresso militar estruturado do mais fraco ao mais forte.</p>
-
-            <div class="document-block">
-                <div class="doc-header">CLASS-Z ou ZUN-ZERO</div>
-                <p>> Início da carreira militar, aqui ele ainda não pode escolher entrar na FaC, eles só podem se alistar mesmo.</p>
-                <p>> Fazendo coisas básicas de todo militar em qualquer país, com uniforme preto básicas com as ombreiras vermelho escuro, eles são os que têm basicamente nada do uniforme.</p>
-            </div>
-
-            <div class="document-block">
-                <div class="doc-header">CLASS-R ou RUN-AWAY</div>
-                <p>> Aqui podendo ir pra linha de frente ou não. Ainda utilizam o mesmo uniforme da classe-Z, mas com nível mais alto já iniciando seu salário e seus primeiros documentos.</p>
-                <p>> Iniciando primeiros passos de treinamento pesados.</p>
-            </div>
-
-            <div class="document-block">
-                <div class="doc-header">CLASS-M ou MASCÁVEL</div>
-                <p>> Aqui onde ficam os Tenentes, Major/Coronel e Sargentos de Elites, lógicos com suas sub-divisões como Class-M!T = Tenente Mascável, e vai assim.</p>
-                <p>> Aqui é onde você pode chegar sem ser "frio", não literal pois as próximas classes são diferentes.</p>
-            </div>
-
-            <div class="document-block">
-                <div class="doc-header">CLASS-SC ou SUA-CONTENÇÃO</div>
-                <p>> Iniciando pra entrar na FaC, ou se tornar mais do que humano nas próximas classes. Aqui o treinamento supera todo seu corpo físico.</p>
-                <p>> 86,8% perdem aqui e os outros continuam.</p>
-            </div>
-
-            <div class="document-block">
-                <div class="doc-header">CLASS-K ou KLOSTINUM</div>
-                <div class="img-container" style="background: transparent; border: none;">
-                    <img src="Class-K.png" class="red-glow" alt="Logo Class-K" style="max-width: 300px; border: none;">
+        
+        <section id="nacional" class="module active theme-white">
+            <div class="doc-header">
+                <h2>Análise de Hegemonia Nacional</h2>
+                <div class="doc-meta">
+                    <span>ID: DOC-N-001</span>
+                    <span>NÍVEL: PÚBLICO/CIVIL</span>
+                    <span>MOEDA: ASTSM</span>
                 </div>
-                <p>> Superiores às Navy Seals, só foi usado uma vez na segunda guerra mundial, sendo o maior medo dos nazistas ao ver a classe-K.</p>
             </div>
 
-            <div class="document-block">
-                <div class="doc-header">CLASS-EuP ou EUPPOLLYUM</div>
-                <div class="img-container" style="background: transparent; border: none;">
-                    <img src="Class_P.png" class="blue-glow" alt="Class-P" style="max-width: 300px; border: none;">
+            <div class="img-box">
+                <img src="Apastel.png" alt="Soberania de Apastel">
+                <div class="img-caption">BANDEIRA NACIONAL - SÍMBOLO DA SOBERANIA ECONÔMICA E MILITAR</div>
+            </div>
+
+            <div class="content-grid">
+                <div class="card">
+                    <h3>Contexto Histórico Geopolítico</h3>
+                    <p>A República de Apastel consolidou sua posição como hegemonia global através de uma diplomacia de neutralidade estratégica. Durante a Primeira Guerra Mundial, o país atuou como o principal fornecedor de recursos primários e manufaturados, capitalizando sobre o desgaste das potências europeias. O colapso logístico da Inglaterra e da Alemanha foi um catalisador direto para a ascensão de Apastel.</p>
                 </div>
-                <p>> Até agora não foram usados. Mas os treinamentos, um soldado EuP para ele, acertar um alvo direto no cérebro ou no coração a 800 Kilometros com uma Desert Eagle, é NADA.</p>
+                <div class="card">
+                    <h3>Desenvolvimento Pós-Guerra</h3>
+                    <p>Ao contrário de outras nações que intervieram precocemente, Apastel preservou sua infraestrutura e recursos, aguardando o esgotamento total dos ativos britânicos para iniciar uma injeção massiva de capital e tecnologia via Estados Unidos, garantindo lucros sem precedentes e o domínio do mercado de defesa.</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 30px;">
+                <h3>Status Socioeconômico</h3>
+                <p>Atualmente, o país apresenta um dos menores índices de vulnerabilidade social registrados. O sistema econômico baseado no Astsm permitiu que o extrato social mais baixo de Apastel possua um poder de compra e qualidade de vida equivalente ao alto padrão da classe média estadunidense. O foco governamental em autossuficiência e infraestrutura tecnológica erradicou a pobreza extrema.</p>
             </div>
         </section>
 
-        <section id="fac-pesquisa" style="margin-top: 50px;">
-            <h1 class="blue-text">FaC (CONTENÇÃO UNIDAS FRAGMENTADAS)</h1>
-            
-            <div class="document-block">
-                <div class="doc-header">REGISTRO_FaC</div>
-                <p>> Bases de pesquisa que ajudaram a criar as classes, aqui só cientista de alto nível. Lógico que não é nível a navy seals, mas é bem famosa pelo mundo.</p>
-                <p>> Principalmente pelas novas tecnologias, como rádios do exércitos a alcance de 8000 kilometros (Em testes).</p>
-                <p>> Salário: Depende da sua reputação, em média $4358,98 Astsm (moedas do País).</p>
+        <section id="governo" class="module theme-white">
+            <div class="doc-header">
+                <h2>Conselho dos Quatro Presidentes</h2>
+                <div class="doc-meta">
+                    <span>ID: DOC-G-044</span>
+                    <span>NÍVEL: ALTA ADMINISTRAÇÃO</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>O Gabinete de Equilíbrio</h3>
+                <p>O poder executivo da República de Apastel é gerido por um gabinete composto por quatro presidentes. Este sistema foi implementado para evitar a centralização de poder e garantir que decisões nacionais de grande impacto passem por um rigoroso processo de escrutínio.</p>
+                <div class="alert-box">
+                    <strong>PROTOCOLO DE VOTAÇÃO:</strong> Toda proposta legislativa ou militar exige o consenso de pelo menos 75% do gabinete. Se um único presidente exercer o poder de veto, a proposta é sumariamente rejeitada para revisão total.
+                </div>
             </div>
         </section>
 
-        <section id="class-pnf" style="margin-top: 50px;">
-            <h1 class="purple-text">ARQUIVO: CLASS-PNF (PROJETO NÃO FÍSICO)</h1>
-            
-            <div class="document-block" style="border-color: var(--class-zp);">
-                <div class="doc-header" style="color: var(--class-zp);">RELATÓRIO_LIXO_FÍSICO</div>
-                <p>> A FaC encontrou um lugar, por causa de um funcionário encontrou um lugar na casa dele, um labirinto de 5000km ao quadrado, impossível ter na sua casa.</p>
-                <p>> Com as pesquisa a resposta é basicamente espécie de Lixo-Físico (nome dado) se você bebe um refrigerante todo, o que sobra? o lixo, no caso a garrafa. Todo material tudo tem isso, resto de uma supernova ou estrela.</p>
-                <p>> Mas e a física, e a... gravidade? Seria o inverso dele, não. Seria objetos que não cabem na física real, por isso o nome Lixo-Físico. A FaC o chamou esse Lixo-Físico de Class-PNF ou Projeto Não Físico, onde irão cuidar e desvendar e se é possível conter.</p>
+        <section id="espacial" class="module theme-gold">
+            <div class="doc-header">
+                <h2>Divisão de Exploração Extraterrestre</h2>
+                <div class="doc-meta">
+                    <span>ID: MISSAO-M-2026</span>
+                    <span>NÍVEL: TÉCNICO/CIENTÍFICO</span>
+                </div>
             </div>
 
-            <div class="document-block" style="border-color: var(--class-zp);">
-                <div class="doc-header" style="color: var(--class-zp);">ENTIDADES_E_AMBIENTE</div>
-                <p>> Ao todo a única "entidade" encontrada foi o Não-Bugado, é uma espécie de glitch que tem em algumas salas com sofás. Se você tocar neles com aparência glitch, você morre, ou melhor some.</p>
-                <p>> Mas é bem fácil de conter, só são algumas salas específicas, já que elas não mudam e sim, são fixas.</p>
-                <p>> Algumas salas iguais escritório outras com piso liso, parede de chumbo ou plástico, com zumbido agudo nas lâmpadas de led no teto, um labirinto finito simplesmente.</p>
+            <div class="card">
+                <h3>Missão Explorer-Apastel: Luna e Marte</h3>
+                <p>Em um feito de engenharia aeroespacial sem precedentes em 2026, a agência espacial de Apastel concluiu com sucesso a missão de retorno de amostras. A sonda automatizada realizou uma manobra de assistência gravitacional na Lua, estabelecendo uma órbita estável antes de prosseguir para Marte.</p>
+                <p style="margin-top: 15px;">A sonda não apenas pousou com precisão cirúrgica na superfície marciana, mas também realizou a coleta de rochas basálticas e amostras de solo profundo, retornando à Terra com integridade total dos dados e materiais. Este avanço coloca Apastel na vanguarda da corrida espacial realista.</p>
+            </div>
+
+            <div class="img-box">
+                <div style="height: 200px; background: #111; display: flex; align-items: center; justify-content: center; color: #444; font-family: 'JetBrains Mono';">
+                    [TELEMETRIA_VISUAL_RECONSTRUCAO_POUSO_MARTE]
+                </div>
+                <div class="img-caption">FIG 1.2: TRAJETÓRIA DE ENTRADA ATMOSFÉRICA DA SONDA EM MARTE</div>
+            </div>
+        </section>
+
+        <section id="fac" class="module theme-blue">
+            <div class="doc-header">
+                <h2>Contenções Unidas Fragmentadas (FaC)</h2>
+                <div class="doc-meta">
+                    <span>ID: FaC-CORE-01</span>
+                    <span>SALA: B-12</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Pesquisa, Desenvolvimento e Defesa</h3>
+                <p>A FaC opera como o braço tecnológico e de contenção de elite da República. Composta exclusivamente pelos cientistas e engenheiros mais renomados do globo, a instituição é responsável pelo desenvolvimento das Classes Militares e de sistemas de comunicação de longo alcance.</p>
+                <p style="margin-top: 15px;"><strong>Projeto Radius:</strong> Atualmente em fase de testes finais, o sistema de radiofrequência de ultra-longo alcance permite comunicações seguras em um raio de 8.000 quilômetros, garantindo comando e controle total sobre ativos militares em qualquer parte do hemisfério.</p>
+            </div>
+        </section>
+
+        <section id="militar" class="module theme-white">
+            <div class="doc-header">
+                <h2>Estrutura e Hierarquia de Defesa</h2>
+                <div class="doc-meta">
+                    <span>ID: MIL-PROTOCOL-V4</span>
+                    <span>NÍVEL: CLASSIFICADO</span>
+                </div>
+            </div>
+
+            <div class="card" style="border-left: 4px solid #444; margin-bottom: 20px;">
+                <h3>Class-Z / Zun-Zero: Recrutamento Inicial</h3>
+                <p>O estágio inicial da carreira militar. Os alistados operam em funções de logística básica e patrulhamento comum. O uniforme é composto por tecidos técnicos pretos com identificação em vermelho escuro nas ombreiras.</p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid #888; margin-bottom: 20px;">
+                <h3>Class-R / Run-Away: Mobilização de Vanguarda</h3>
+                <p>Soldados aptos para a linha de frente. Iniciam o treinamento de combate pesado e recebem sua primeira identificação oficial de nível salarial governamental.</p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--accent-blue); margin-bottom: 20px;">
+                <h3>Class-M / Mascável: Comando de Elite</h3>
+                <p>Compreende a oficialidade: Tenentes, Majores e Sargentos de Elite. É o ápice da carreira militar humana convencional, onde a liderança tática é prioridade.</p>
+            </div>
+
+            <div class="alert-box" style="border-color: var(--accent-red);">
+                <strong>CLASS-SC / SUA-CONTENÇÃO:</strong> O divisor biológico. Com uma taxa de falha de 86,8%, este estágio submete o corpo humano a tensões que desafiam a integridade física. Aqueles que superam este nível deixam de ser classificados como soldados convencionais.
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--accent-red); margin-bottom: 20px;">
+                <h3>Class-K / Klostinum: Supressão Absoluta</h3>
+                <p>A unidade mais temida da história. Implementada com sucesso absoluto durante a Segunda Guerra Mundial como resposta direta às ameaças do Eixo. Superam as capacidades das unidades Navy Seals em todos os parâmetros operacionais.</p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--accent-gold);">
+                <h3>Class-EuP / EuPPollyum: Perfeição Balística</h3>
+                <p>Unidades em estado de reserva estratégica. A precisão destes agentes é estatisticamente impossível para seres biológicos comuns, sendo capazes de neutralizar alvos em pontos vitais a distâncias de até 800 quilômetros utilizando armamento de mão modificado.</p>
+            </div>
+        </section>
+
+        <section id="pnf" class="module theme-purple">
+            <div class="doc-header">
+                <h2>Protocolo de Não-Física (Class-PNF)</h2>
+                <div class="doc-meta">
+                    <span>ID: PNF-990</span>
+                    <span>CATEGORIA: RESÍDUO FÍSICO</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Anomalia Espacial "Lixo-Físico"</h3>
+                <p>A descoberta do PNF ocorreu durante uma inspeção rotineira em uma residência civil, onde um desvio espacial de 5.000 km² foi identificado em uma área onde, fisicamente, não deveria haver espaço disponível. Cientificamente denominado como "Lixo-Físico", o fenômeno representa o descarte de matéria e física que não encontrou lugar na realidade tangível, como subprodutos de colapsos estelares ou supernovas.</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="card">
+                    <h3>Arquitetura Liminar</h3>
+                    <p>O ambiente é um labirinto finito composto por estruturas que mimetizam escritórios humanos, com paredes revestidas de chumbo e polímeros sintéticos. A característica mais marcante é a emissão sonora constante: um zumbido agudo persistente proveniente de fontes de iluminação LED estáticas.</p>
+                </div>
+                <div class="card">
+                    <h3>Relatório de Entidade: O Não-Bugado</h3>
+                    <p>A única anomalia biológica/física identificada. Manifesta-se como uma distorção visual (glitch) em móveis específicos, como sofás. O contato molecular com a entidade resulta na desintegração ou remoção completa do indivíduo da realidade observável. A contenção é considerada estável devido à natureza estática das salas afetadas.</p>
+                </div>
             </div>
         </section>
 
     </main>
 
     <script>
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                document.querySelectorAll('.nav-item').forEach(i => {
-                    i.classList.remove('active');
-                    if(i.getAttribute('href') === '#class-pnf') i.style.borderLeft = '1px solid transparent';
-                });
-                
-                this.classList.add('active');
-                if(this.getAttribute('href') === '#class-pnf') this.style.borderLeft = '4px solid var(--class-zp)';
-
-                const target = this.getAttribute('href').substring(1);
-                document.querySelectorAll('section').forEach(s => {
-                    s.style.display = (s.id === target) ? 'block' : 'none';
-                });
+        function showModule(moduleId, btn, color) {
+            // Oculta todos os módulos
+            document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+            // Remove classe ativa de todos os botões
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.classList.remove('active');
+                b.style.borderLeftColor = 'transparent';
             });
-        });
 
-        document.querySelectorAll('section').forEach((s, index) => {
-            if(index !== 0) s.style.display = 'none';
-        });
+            // Mostra o módulo selecionado
+            const target = document.getElementById(moduleId);
+            target.classList.add('active');
+
+            // Ativa o botão
+            btn.classList.add('active');
+            btn.style.borderLeftColor = color;
+            document.documentElement.style.setProperty('--active-color', color);
+            
+            // Scroll para o topo
+            document.querySelector('main').scrollTop = 0;
+        }
     </script>
 </body>
 </html>
