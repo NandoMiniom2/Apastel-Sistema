@@ -12,7 +12,7 @@
             --text-color: #c0c0c0;
             --class-k: #8b0000;
             --class-p: #0047ab;
-            --class-zp: #8a2be2; /* Roxo para a Class-ZP */
+            --class-zp: #8a2be2;
             --class-white: #ffffff;
             --glow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
@@ -30,7 +30,7 @@
             height: 100vh;
         }
 
-        /* Efeito de Scanline (Backrooms Style) */
+        /* Efeito de Scanline original */
         body::after {
             content: "";
             position: fixed;
@@ -44,7 +44,7 @@
 
         /* Sidebar de Comando */
         nav {
-            width: 250px;
+            width: 260px;
             background: #000;
             border-right: 2px solid var(--border-color);
             display: flex;
@@ -55,7 +55,7 @@
 
         .nav-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
         }
@@ -63,14 +63,14 @@
         .nav-header h2 { font-size: 18px; color: var(--class-k); text-shadow: 0 0 5px #f00; }
 
         .nav-item {
-            padding: 12px;
-            margin: 5px 0;
+            padding: 10px;
+            margin: 3px 0;
             border: 1px solid transparent;
             cursor: pointer;
             transition: 0.3s;
             text-decoration: none;
             color: var(--text-color);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .nav-item:hover { background: #111; border-color: var(--border-color); }
@@ -94,7 +94,7 @@
 
         .status-box { font-size: 12px; color: #666; }
 
-        /* Estética SCP/Backrooms */
+        /* Estética de Documento */
         .document-block {
             background: #0d0d0d;
             border: 1px solid var(--border-color);
@@ -119,12 +119,12 @@
         .blue-text { color: var(--class-p); text-shadow: 0 0 5px #0047ab; }
         .purple-text { color: var(--class-zp); text-shadow: 0 0 5px var(--class-zp); }
 
-        /* Classes de brilho para as imagens */
+        /* Brilhos */
         .red-glow { filter: drop-shadow(0 0 10px var(--class-k)); }
         .purple-glow { filter: drop-shadow(0 0 10px var(--class-zp)); }
         .blue-glow { filter: drop-shadow(0 0 10px var(--class-p)); }
 
-        /* Tabelas Técnicas */
+        /* Tabelas */
         .scp-table {
             width: 100%;
             border-collapse: collapse;
@@ -136,11 +136,12 @@
             border: 1px solid #333;
             padding: 12px;
             text-align: left;
+            font-size: 13px;
         }
 
-        .scp-table th { background: #1a1a1a; width: 30%; color: #888; }
+        .scp-table th { background: #1a1a1a; width: 25%; color: #888; }
 
-        /* Banners de Alerta */
+        /* Banners */
         .alert-banner {
             border: 2px solid var(--class-k);
             padding: 15px;
@@ -151,23 +152,12 @@
             animation: pulse 2s infinite;
         }
 
-        .secret-banner {
-            border: 2px dashed var(--class-zp);
-            padding: 15px;
-            color: var(--class-zp);
-            background: rgba(138, 43, 226, 0.05);
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0;
-        }
-
         @keyframes pulse {
             0% { opacity: 1; }
             50% { opacity: 0.5; }
             100% { opacity: 1; }
         }
 
-        /* Container padrão de imagens */
         .img-container {
             text-align: center;
             margin: 20px 0;
@@ -182,7 +172,6 @@
             border: 1px solid #333;
         }
 
-        /* Responsividade para o seu Celeron */
         @media (max-width: 800px) {
             body { flex-direction: column; }
             nav { width: 100%; height: auto; border-right: none; border-bottom: 2px solid var(--border-color); }
@@ -197,21 +186,20 @@
     <nav>
         <div class="nav-header">
             <h2>APASTEL_OS v4.0</h2>
-            <p style="font-size: 10px;">CONEXÃO_ARACAJU_2026</p>
+            <p style="font-size: 10px;">SISTEMA DE ARQUIVOS CANÔNICOS</p>
         </div>
         <a href="#inicio" class="nav-item active">TERMINAL_HOME</a>
-        <a href="#admin" class="nav-item">DADOS_ADMIN_BRANCO</a>
-        <a href="#class-k" class="nav-item">ARQUIVO_CLASS-K</a>
-        <a href="#class-p" class="nav-item">ARQUIVO_CLASS-P</a>
-        <a href="#zilith" class="nav-item purple-text" style="font-weight: bold;">ARQUIVO_CLASS-ZP</a>
-        <a href="#incidentes" class="nav-item">LOG_DE_EXPERIMENTOS</a>
+        <a href="#governo" class="nav-item">SISTEMA_DE_GOVERNO</a>
+        <a href="#classes-militares" class="nav-item">CLASSES_MILITARES</a>
+        <a href="#fac-info" class="nav-item">ARQUIVO_FaC</a>
+        <a href="#class-pnf" class="nav-item purple-text" style="font-weight: bold;">PROJETO_NÃO_FÍSICO</a>
     </nav>
 
     <main>
         <header>
             <div class="status-box">
                 SISTEMA: OPERACIONAL<br>
-                RADIAÇÃO: 0.04mSv (ESTÁVEL)
+                STATUS: CANON
             </div>
             <div class="status-box" style="text-align: right;">
                 LOCALIZAÇÃO: APASTEL CENTRAL<br>
@@ -221,104 +209,144 @@
 
         <section id="inicio">
             <h1 class="red-text">DADOS GOVERNAMENTAIS: APASTEL</h1>
-            <p>Este terminal contém informações sigilosas sobre a superpotência de Apastel e as operações da **FaC (Contenção Unidas Fragmentadas)**.</p>
             
             <div class="img-container">
                 <img src="Apastel.png" alt="Bandeira de Apastel">
             </div>
 
             <div class="document-block">
-                <div class="doc-header">RESUMO_NAÇÃO</div>
-                <p>> Em 2026, Apastel consolidou-se como a maior potência econômica e militar do globo. Sob o comando dos 4 presidentes, o país utiliza tecnologia de micro-singularidade (Buracos Negros) para manter a hegemonia.</p>
-                <p>> Lema: <span class="red-text">Χοντêρ & Προτêγêρ</span> (Contêr & Proteger).</p>
+                <div class="doc-header">HISTÓRICO_DA_NAÇÃO</div>
+                <p>> Apastel começou bem pois vendeu muito recurso sendo país neutro até a chegada da Primeira Guerra Mundial.</p>
+                <p>> A Inglaterra perdeu e a Alemanha também pelo Apastel.</p>
+                <p>> Na Segunda Guerra Mundial iniciou sua grande super potência. Apastel ficou em primeiro lugar em militarismo ou economia.</p>
+                <p>> Por enquanto agora, os EUA lideram o top 1.</p>
+                <p>> O país focou muito em si mesma e pensou no futuro, igual os EUA. Não ajudou a Inglaterra, esperou ficar sem recursos e pedir pros EUA recursos, assim ganhando grana na Segunda Guerra.</p>
             </div>
-        </section>
 
-        <section id="admin" style="margin-top: 50px;">
-            <h1 style="color: white;">DADOS ADMINISTRATIVOS: CLASSE BRANCA</h1>
             <div class="document-block">
-                <div class="doc-header">RECURSOS_HUMANOS_FAC</div>
-                <div class="img-container">
-                    <img src="Class_Branca.png" alt="Classe Branca" style="max-width: 300px;">
-                </div>
-                <p>> Responsáveis pela manutenção do sistema e logística civil da FaC.</p>
+                <div class="doc-header">DADOS_SOCIAIS_E_ECONÔMICOS</div>
+                <p>> Moradores de rua são muito, mas muito baixos, quase zero. Os que são, são basicamente um morador médio ou alto nível dos EUA.</p>
+                <p>> Moeda Oficial: Astsm (Moeda do País).</p>
             </div>
         </section>
 
-        <section id="class-k" style="margin-top: 50px;">
-            <h1 class="red-text">ARQUIVO TÁTICO: CLASS-K (KLOSTINUM)</h1>
-            <div class="alert-banner">NÍVEL DE PERIGOSIDADE: MÁXIMO // CÓDIGO VERMELHO</div>
+        <section id="governo" style="margin-top: 50px;">
+            <h1 class="red-text">SISTEMA DE GOVERNO: OS 4 PRESIDENTES</h1>
             
             <div class="document-block">
-                <div class="doc-header">IDENTIFICAÇÃO_VISUAL</div>
+                <div class="doc-header">PROTOCOLO_DE_DECISÃO</div>
+                <p>> Aqui são 4 presidentes.</p>
+                <p>> Os 3 têm que concordar com o outro que for colocar algo. Se um recusar, é rejeitada.</p>
+                <p>> Esse sistema garante o equilíbrio das decisões tomadas pela nação de Apastel.</p>
+            </div>
+        </section>
+
+        <section id="classes-militares" style="margin-top: 50px;">
+            <h1 class="red-text">HIERARQUIA MILITAR (DO MAIS FRACO AO MAIS FORTE)</h1>
+            
+            <div class="document-block">
+                <div class="doc-header">CLASS-Z ou ZUN-ZERO</div>
+                <p>> Início da carreira militar.</p>
+                <p>> Aqui o soldado ainda não pode escolher entrar na FaC, ele só pode se alistar mesmo.</p>
+                <p>> Fazem coisas básicas de todo militar em qualquer país.</p>
+                <p>> Uniforme preto básico com as ombreiras vermelho escuro. Eles são os que têm basicamente nada do uniforme.</p>
+            </div>
+
+            <div class="document-block">
+                <div class="doc-header">CLASS-R ou RUN-AWAY</div>
+                <p>> Aqui podendo ir para a linha de frente ou não.</p>
+                <p>> Ainda utilizam o mesmo uniforme da Classe-Z, mas com nível mais alto.</p>
+                <p>> Já iniciando seu salário e seus primeiros documentos.</p>
+                <p>> Iniciando os primeiros passos de treinamentos pesados.</p>
+            </div>
+
+            <div class="document-block">
+                <div class="doc-header">CLASS-M ou MASCÁVEL</div>
+                <p>> Aqui onde ficam os Tenentes, Major/Coronel e Sargentos de Elites.</p>
+                <p>> Possui suas subdivisões como Class-M!T = Tenente Mascável, e vai assim.</p>
+                <p>> Aqui é onde você pode chegar sem ser "frio" (não literal pois as próximas classes são diferentes).</p>
+            </div>
+
+            <div class="document-block">
+                <div class="doc-header">CLASS-SC ou SUA-CONTENÇÃO</div>
+                <p>> Iniciando para entrar na FaC, ou se tornar mais do que humano nas próximas classes.</p>
+                <p>> Aqui o treinamento supera todo o seu corpo físico.</p>
+                <p>> 86,8% perdem aqui e os outros continuam.</p>
+            </div>
+
+            <div class="document-block">
+                <div class="doc-header">CLASS-K ou KLOSTINUM</div>
                 <div class="img-container" style="background: transparent; border: none;">
                     <img src="Class-K.png" class="red-glow" alt="Logo Class-K" style="max-width: 300px; border: none;">
                 </div>
-                <table class="scp-table">
-                    <tr><th>FUNÇÃO</th><td>Força de Choque e Extermínio</td></tr>
-                    <tr><th>HISTÓRICO</th><td>Conhecidos como "Nazistas-Killers" na 2ª Guerra Mundial.</td></tr>
-                    <tr><th>MODIFICAÇÃO</th><td>Laser Térmico Ocular (Permanente).</td></tr>
-                    <tr><th>ESTADO</th><td>Ativo / Olhos Vermelho Escuro.</td></tr>
-                </table>
+                <p>> Superiores às Navy Seals.</p>
+                <p>> Só foi usado uma vez na Segunda Guerra Mundial, sendo o maior medo dos nazistas ao ver a Classe-K.</p>
             </div>
-        </section>
 
-        <section id="class-p" style="margin-top: 50px;">
-            <h1 class="blue-text">ARQUIVO TÁTICO: CLASS-P (EUPPOLLYUM)</h1>
             <div class="document-block">
-                <div class="doc-header">PROTOCOLO_LONGO_ALCANCE</div>
+                <div class="doc-header">CLASS-EuP ou EUPPOLLYUM</div>
                 <div class="img-container">
                     <img src="Class_P.png" class="blue-glow" alt="Class-P" style="max-width: 300px;">
                 </div>
-                <table class="scp-table">
-                    <tr><th>FUNÇÃO</th><td>Artilharia de Precisão e Ciência FaC</td></tr>
-                    <tr><th>ALCANCE</th><td>Efetivo até 800km // Monitoramento até 8000km</td></tr>
-                    <tr><th>Habilidade</th><td>Cálculo Balístico Biológico (Cérebro-Computador)</td></tr>
-                </table>
+                <p>> Até agora não foram usados.</p>
+                <p>> Para um soldado EuP, acertar um alvo direto no cérebro ou no coração a 800 Kilometros com uma Desert Eagle é NADA.</p>
             </div>
         </section>
 
-        <section id="zilith" style="margin-top: 50px;">
-            <h1 class="purple-text">ARQUIVO TÁTICO: CLASS-ZP (ZILITH_PROJECT)</h1>
-            <div class="secret-banner">ACESSO RESTRITO // NÍVEL ULTRA SECRETO // MULTIVERSO UN/UNP</div>
+        <section id="fac-info" style="margin-top: 50px;">
+            <h1 class="blue-text">FaC (CONTENÇÃO UNIDAS FRAGMENTADAS)</h1>
+            
+            <div class="document-block">
+                <div class="doc-header">SOBRE_A_INSTITUIÇÃO</div>
+                <p>> Bases de pesquisa que ajudaram a criar as classes.</p>
+                <p>> Aqui só cientistas de alto nível. Não é nível a Navy Seals, mas é bem famosa pelo mundo, principalmente pelas novas tecnologias.</p>
+                <p>> Novas tecnologias em teste: Rádios do exército com alcance de 8000 kilometros.</p>
+                <p>> Salário médio: $4358,98 Astsm (Depende da sua reputação).</p>
+            </div>
+        </section>
+
+        <section id="class-pnf" style="margin-top: 50px;">
+            <h1 class="purple-text">PROJETO NÃO FÍSICO (CLASS-PNF)</h1>
             
             <div class="document-block" style="border-color: var(--class-zp);">
-                <div class="doc-header" style="color: var(--class-zp);">PROTOCOLO_OFICIAL_ZILITH</div>
-                <table class="scp-table" style="border-color: var(--class-zp);">
-                    <tr><th style="color: var(--class-zp);">FUNÇÃO</th><td>Monitoramento de Fendas e Estabilização Dimensional</td></tr>
-                    <tr><th style="color: var(--class-zp);">JURISDIÇÃO</th><td>Saga Zilith // Multiverso Un e Unp</td></tr>
-                    <tr><th style="color: var(--class-zp);">ESTADO TÁTICO</th><td>CONFIDENCIAL / Energia Púrpura Detectada</td></tr>
-                </table>
-                <p>> A **Class-ZP** lida com a infraestrutura multiversal. O foco central envolve a análise do tecido entre realidades.</p>
-                <p style="text-align: center; padding: 15px; border: 1px dashed var(--class-zp); margin: 10px 0;">
-                    [ IMAGENS DE CAMPO DISPONÍVEIS APENAS VIA SIMULAÇÃO MINECRAFT/OMSI ]
-                </p>
+                <div class="doc-header" style="color: var(--class-zp);">DESCOBERTA_DO_LIXO_FÍSICO</div>
+                <p>> Um funcionário encontrou um lugar na casa dele, um labirinto de 5000km ao quadrado, impossível ter na sua casa.</p>
+                <p>> Com as pesquisas a resposta é basicamente uma espécie de Lixo-Físico.</p>
+                <p>> Se você bebe um refrigerante todo, o que sobra? O lixo, no caso a garrafa. Todo material e tudo tem isso. Resto de uma supernova ou estrela.</p>
+                <p>> São objetos que não cabem na física real, por isso o nome Lixo-Físico.</p>
+                <p>> A FaC chamou esse Lixo-Físico de Class-PNF ou Projeto Não Físico, onde irão cuidar, desvendar e ver se é possível conter.</p>
             </div>
-        </section>
 
-        <section id="incidentes" style="margin-top: 50px;">
-            <h1>RELATÓRIOS DE INCIDENTES (2026)</h1>
             <div class="document-block">
-                <div class="doc-header">PROJETO_CARTA_ABERTA</div>
-                <p>> A FaC não realiza sequestros. Todo soldado recebeu a **Carta da Verdade**.</p>
-                <div style="padding: 20px; border-left: 4px solid var(--class-k); background: #111; font-style: italic;">
-                    "Eu li a carta. Meus olhos agora são sangue, mas meus inimigos são cinzas. Eu escolhi Apastel." — Soldado K.
-                </div>
+                <div class="doc-header">ESTRUTURA_E_AMBIENTE</div>
+                <p>> É um labirinto finito simplesmente.</p>
+                <p>> Algumas salas são iguais a escritórios, outras possuem piso liso, parede de chumbo ou plástico.</p>
+                <p>> Possui um zumbido agudo nas lâmpadas de LED no teto.</p>
+                <p>> As salas não mudam, elas são fixas.</p>
+            </div>
+
+            <div class="document-block">
+                <div class="doc-header">ENTIDADE: O NÃO-BUGADO</div>
+                <p>> Ao todo a única "entidade" encontrada foi o Não-Bugado.</p>
+                <p>> É uma espécie de glitch que tem em algumas salas com sofás.</p>
+                <p>> Se você tocar neles com aparência glitch, você morre, ou melhor, some.</p>
+                <p>> É bem fácil de conter, só são algumas salas específicas já que elas não mudam.</p>
             </div>
         </section>
 
     </main>
 
     <script>
+        // Sistema de navegação
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', function(e) {
                 document.querySelectorAll('.nav-item').forEach(i => {
                     i.classList.remove('active');
-                    if(i.getAttribute('href') === '#zilith') i.style.borderLeft = '1px solid transparent';
+                    if(i.getAttribute('href') === '#class-pnf') i.style.borderLeft = '1px solid transparent';
                 });
                 
                 this.classList.add('active');
-                if(this.getAttribute('href') === '#zilith') this.style.borderLeft = '4px solid var(--class-zp)';
+                if(this.getAttribute('href') === '#class-pnf') this.style.borderLeft = '4px solid var(--class-zp)';
 
                 const target = this.getAttribute('href').substring(1);
                 document.querySelectorAll('section').forEach(s => {
@@ -327,6 +355,7 @@
             });
         });
 
+        // Inicia na home
         document.querySelectorAll('section').forEach((s, index) => {
             if(index !== 0) s.style.display = 'none';
         });
