@@ -12,7 +12,7 @@
             --text-color: #c0c0c0;
             --class-k: #8b0000;
             --class-p: #0047ab;
-            --class-zp: #8a2be2;
+            --class-zp: #8a2be2; 
             --class-white: #ffffff;
             --glow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
@@ -30,7 +30,7 @@
             height: 100vh;
         }
 
-        /* Efeito de Scanline original */
+        /* Efeito de Scanline */
         body::after {
             content: "";
             position: fixed;
@@ -44,7 +44,7 @@
 
         /* Sidebar de Comando */
         nav {
-            width: 260px;
+            width: 250px;
             background: #000;
             border-right: 2px solid var(--border-color);
             display: flex;
@@ -55,7 +55,7 @@
 
         .nav-header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
         }
@@ -63,14 +63,14 @@
         .nav-header h2 { font-size: 18px; color: var(--class-k); text-shadow: 0 0 5px #f00; }
 
         .nav-item {
-            padding: 10px;
-            margin: 3px 0;
+            padding: 12px;
+            margin: 5px 0;
             border: 1px solid transparent;
             cursor: pointer;
             transition: 0.3s;
             text-decoration: none;
             color: var(--text-color);
-            font-size: 13px;
+            font-size: 14px;
         }
 
         .nav-item:hover { background: #111; border-color: var(--border-color); }
@@ -94,7 +94,6 @@
 
         .status-box { font-size: 12px; color: #666; }
 
-        /* Estética de Documento */
         .document-block {
             background: #0d0d0d;
             border: 1px solid var(--border-color);
@@ -119,12 +118,10 @@
         .blue-text { color: var(--class-p); text-shadow: 0 0 5px #0047ab; }
         .purple-text { color: var(--class-zp); text-shadow: 0 0 5px var(--class-zp); }
 
-        /* Brilhos */
         .red-glow { filter: drop-shadow(0 0 10px var(--class-k)); }
         .purple-glow { filter: drop-shadow(0 0 10px var(--class-zp)); }
         .blue-glow { filter: drop-shadow(0 0 10px var(--class-p)); }
 
-        /* Tabelas */
         .scp-table {
             width: 100%;
             border-collapse: collapse;
@@ -136,12 +133,10 @@
             border: 1px solid #333;
             padding: 12px;
             text-align: left;
-            font-size: 13px;
         }
 
-        .scp-table th { background: #1a1a1a; width: 25%; color: #888; }
+        .scp-table th { background: #1a1a1a; width: 30%; color: #888; }
 
-        /* Banners */
         .alert-banner {
             border: 2px solid var(--class-k);
             padding: 15px;
@@ -186,20 +181,19 @@
     <nav>
         <div class="nav-header">
             <h2>APASTEL_OS v4.0</h2>
-            <p style="font-size: 10px;">SISTEMA DE ARQUIVOS CANÔNICOS</p>
+            <p style="font-size: 10px;">CONEXÃO_ARACAJU_2026</p>
         </div>
-        <a href="#inicio" class="nav-item active">TERMINAL_HOME</a>
-        <a href="#governo" class="nav-item">SISTEMA_DE_GOVERNO</a>
-        <a href="#classes-militares" class="nav-item">CLASSES_MILITARES</a>
-        <a href="#fac-info" class="nav-item">ARQUIVO_FaC</a>
-        <a href="#class-pnf" class="nav-item purple-text" style="font-weight: bold;">PROJETO_NÃO_FÍSICO</a>
+        <a href="#inicio" class="nav-item active">DADOS_APASTEL</a>
+        <a href="#classes-militares" class="nav-item">HIERARQUIA_MILITAR</a>
+        <a href="#fac-pesquisa" class="nav-item">CENTRAL_FaC</a>
+        <a href="#class-pnf" class="nav-item purple-text" style="font-weight: bold;">PROJETO_NAO_FISICO</a>
     </nav>
 
     <main>
         <header>
             <div class="status-box">
                 SISTEMA: OPERACIONAL<br>
-                STATUS: CANON
+                RADIAÇÃO: 0.04mSv (ESTÁVEL)
             </div>
             <div class="status-box" style="text-align: right;">
                 LOCALIZAÇÃO: APASTEL CENTRAL<br>
@@ -209,68 +203,51 @@
 
         <section id="inicio">
             <h1 class="red-text">DADOS GOVERNAMENTAIS: APASTEL</h1>
+            <p>Este terminal contém informações sigilosas sobre a superpotência de Apastel e as operações da FaC.</p>
             
             <div class="img-container">
                 <img src="Apastel.png" alt="Bandeira de Apastel">
             </div>
 
             <div class="document-block">
-                <div class="doc-header">HISTÓRICO_DA_NAÇÃO</div>
-                <p>> Apastel começou bem pois vendeu muito recurso sendo país neutro até a chegada da Primeira Guerra Mundial.</p>
-                <p>> A Inglaterra perdeu e a Alemanha também pelo Apastel.</p>
-                <p>> Na Segunda Guerra Mundial iniciou sua grande super potência. Apastel ficou em primeiro lugar em militarismo ou economia.</p>
-                <p>> Por enquanto agora, os EUA lideram o top 1.</p>
-                <p>> O país focou muito em si mesma e pensou no futuro, igual os EUA. Não ajudou a Inglaterra, esperou ficar sem recursos e pedir pros EUA recursos, assim ganhando grana na Segunda Guerra.</p>
+                <div class="doc-header">HISTÓRICO_E_ECONOMIA</div>
+                <p>> Apastel começou bem pois vendeu muito recursos sendo país neutro até a chegada da primeira guerra mundial. Inglaterra perdeu e Alemanha também pelo Apastel.</p>
+                <p>> Na Segunda iniciou sua grande super potência, Apastel ficou em primeiro lugar em militarismo ou economia.</p>
+                <p>> Por enquanto agora, EUA lidera o top 1.</p>
+                <p>> Moradores de ruas são muito, mas muito baixos, quase zero, e os que são, são basicamente um morador médio ou alto nível dos EUA. Apastel focou muito em si mesma ela pensou no futuro, igual os EUA, não ajudou a Inglaterra esperou ficar sem recursos e pediu pros EUA recurso assim ganhando grana e tal na segunda guerra.</p>
             </div>
 
             <div class="document-block">
-                <div class="doc-header">DADOS_SOCIAIS_E_ECONÔMICOS</div>
-                <p>> Moradores de rua são muito, mas muito baixos, quase zero. Os que são, são basicamente um morador médio ou alto nível dos EUA.</p>
-                <p>> Moeda Oficial: Astsm (Moeda do País).</p>
-            </div>
-        </section>
-
-        <section id="governo" style="margin-top: 50px;">
-            <h1 class="red-text">SISTEMA DE GOVERNO: OS 4 PRESIDENTES</h1>
-            
-            <div class="document-block">
-                <div class="doc-header">PROTOCOLO_DE_DECISÃO</div>
-                <p>> Aqui são 4 presidentes.</p>
-                <p>> Os 3 têm que concordar com o outro que for colocar algo. Se um recusar, é rejeitada.</p>
-                <p>> Esse sistema garante o equilíbrio das decisões tomadas pela nação de Apastel.</p>
+                <div class="doc-header">SISTEMA_DE_GOVERNO</div>
+                <p>> Aqui são 4 presidentes. Os 3 têm que concordar com o outro que for colocar algo, se um recusar, é rejeitada.</p>
             </div>
         </section>
 
         <section id="classes-militares" style="margin-top: 50px;">
-            <h1 class="red-text">HIERARQUIA MILITAR (DO MAIS FRACO AO MAIS FORTE)</h1>
-            
+            <h1 class="red-text">HIERARQUIA MILITAR DE APASTEL</h1>
+            <p>Progresso militar estruturado do mais fraco ao mais forte.</p>
+
             <div class="document-block">
                 <div class="doc-header">CLASS-Z ou ZUN-ZERO</div>
-                <p>> Início da carreira militar.</p>
-                <p>> Aqui o soldado ainda não pode escolher entrar na FaC, ele só pode se alistar mesmo.</p>
-                <p>> Fazem coisas básicas de todo militar em qualquer país.</p>
-                <p>> Uniforme preto básico com as ombreiras vermelho escuro. Eles são os que têm basicamente nada do uniforme.</p>
+                <p>> Início da carreira militar, aqui ele ainda não pode escolher entrar na FaC, eles só podem se alistar mesmo.</p>
+                <p>> Fazendo coisas básicas de todo militar em qualquer país, com uniforme preto básicas com as ombreiras vermelho escuro, eles são os que têm basicamente nada do uniforme.</p>
             </div>
 
             <div class="document-block">
                 <div class="doc-header">CLASS-R ou RUN-AWAY</div>
-                <p>> Aqui podendo ir para a linha de frente ou não.</p>
-                <p>> Ainda utilizam o mesmo uniforme da Classe-Z, mas com nível mais alto.</p>
-                <p>> Já iniciando seu salário e seus primeiros documentos.</p>
-                <p>> Iniciando os primeiros passos de treinamentos pesados.</p>
+                <p>> Aqui podendo ir pra linha de frente ou não. Ainda utilizam o mesmo uniforme da classe-Z, mas com nível mais alto já iniciando seu salário e seus primeiros documentos.</p>
+                <p>> Iniciando primeiros passos de treinamento pesados.</p>
             </div>
 
             <div class="document-block">
                 <div class="doc-header">CLASS-M ou MASCÁVEL</div>
-                <p>> Aqui onde ficam os Tenentes, Major/Coronel e Sargentos de Elites.</p>
-                <p>> Possui suas subdivisões como Class-M!T = Tenente Mascável, e vai assim.</p>
-                <p>> Aqui é onde você pode chegar sem ser "frio" (não literal pois as próximas classes são diferentes).</p>
+                <p>> Aqui onde ficam os Tenentes, Major/Coronel e Sargentos de Elites, lógicos com suas sub-divisões como Class-M!T = Tenente Mascável, e vai assim.</p>
+                <p>> Aqui é onde você pode chegar sem ser "frio", não literal pois as próximas classes são diferentes.</p>
             </div>
 
             <div class="document-block">
                 <div class="doc-header">CLASS-SC ou SUA-CONTENÇÃO</div>
-                <p>> Iniciando para entrar na FaC, ou se tornar mais do que humano nas próximas classes.</p>
-                <p>> Aqui o treinamento supera todo o seu corpo físico.</p>
+                <p>> Iniciando pra entrar na FaC, ou se tornar mais do que humano nas próximas classes. Aqui o treinamento supera todo seu corpo físico.</p>
                 <p>> 86,8% perdem aqui e os outros continuam.</p>
             </div>
 
@@ -279,65 +256,50 @@
                 <div class="img-container" style="background: transparent; border: none;">
                     <img src="Class-K.png" class="red-glow" alt="Logo Class-K" style="max-width: 300px; border: none;">
                 </div>
-                <p>> Superiores às Navy Seals.</p>
-                <p>> Só foi usado uma vez na Segunda Guerra Mundial, sendo o maior medo dos nazistas ao ver a Classe-K.</p>
+                <p>> Superiores às Navy Seals, só foi usado uma vez na segunda guerra mundial, sendo o maior medo dos nazistas ao ver a classe-K.</p>
             </div>
 
             <div class="document-block">
                 <div class="doc-header">CLASS-EuP ou EUPPOLLYUM</div>
-                <div class="img-container">
-                    <img src="Class_P.png" class="blue-glow" alt="Class-P" style="max-width: 300px;">
+                <div class="img-container" style="background: transparent; border: none;">
+                    <img src="Class_P.png" class="blue-glow" alt="Class-P" style="max-width: 300px; border: none;">
                 </div>
-                <p>> Até agora não foram usados.</p>
-                <p>> Para um soldado EuP, acertar um alvo direto no cérebro ou no coração a 800 Kilometros com uma Desert Eagle é NADA.</p>
+                <p>> Até agora não foram usados. Mas os treinamentos, um soldado EuP para ele, acertar um alvo direto no cérebro ou no coração a 800 Kilometros com uma Desert Eagle, é NADA.</p>
             </div>
         </section>
 
-        <section id="fac-info" style="margin-top: 50px;">
+        <section id="fac-pesquisa" style="margin-top: 50px;">
             <h1 class="blue-text">FaC (CONTENÇÃO UNIDAS FRAGMENTADAS)</h1>
             
             <div class="document-block">
-                <div class="doc-header">SOBRE_A_INSTITUIÇÃO</div>
-                <p>> Bases de pesquisa que ajudaram a criar as classes.</p>
-                <p>> Aqui só cientistas de alto nível. Não é nível a Navy Seals, mas é bem famosa pelo mundo, principalmente pelas novas tecnologias.</p>
-                <p>> Novas tecnologias em teste: Rádios do exército com alcance de 8000 kilometros.</p>
-                <p>> Salário médio: $4358,98 Astsm (Depende da sua reputação).</p>
+                <div class="doc-header">REGISTRO_FaC</div>
+                <p>> Bases de pesquisa que ajudaram a criar as classes, aqui só cientista de alto nível. Lógico que não é nível a navy seals, mas é bem famosa pelo mundo.</p>
+                <p>> Principalmente pelas novas tecnologias, como rádios do exércitos a alcance de 8000 kilometros (Em testes).</p>
+                <p>> Salário: Depende da sua reputação, em média $4358,98 Astsm (moedas do País).</p>
             </div>
         </section>
 
         <section id="class-pnf" style="margin-top: 50px;">
-            <h1 class="purple-text">PROJETO NÃO FÍSICO (CLASS-PNF)</h1>
+            <h1 class="purple-text">ARQUIVO: CLASS-PNF (PROJETO NÃO FÍSICO)</h1>
             
             <div class="document-block" style="border-color: var(--class-zp);">
-                <div class="doc-header" style="color: var(--class-zp);">DESCOBERTA_DO_LIXO_FÍSICO</div>
-                <p>> Um funcionário encontrou um lugar na casa dele, um labirinto de 5000km ao quadrado, impossível ter na sua casa.</p>
-                <p>> Com as pesquisas a resposta é basicamente uma espécie de Lixo-Físico.</p>
-                <p>> Se você bebe um refrigerante todo, o que sobra? O lixo, no caso a garrafa. Todo material e tudo tem isso. Resto de uma supernova ou estrela.</p>
-                <p>> São objetos que não cabem na física real, por isso o nome Lixo-Físico.</p>
-                <p>> A FaC chamou esse Lixo-Físico de Class-PNF ou Projeto Não Físico, onde irão cuidar, desvendar e ver se é possível conter.</p>
+                <div class="doc-header" style="color: var(--class-zp);">RELATÓRIO_LIXO_FÍSICO</div>
+                <p>> A FaC encontrou um lugar, por causa de um funcionário encontrou um lugar na casa dele, um labirinto de 5000km ao quadrado, impossível ter na sua casa.</p>
+                <p>> Com as pesquisa a resposta é basicamente espécie de Lixo-Físico (nome dado) se você bebe um refrigerante todo, o que sobra? o lixo, no caso a garrafa. Todo material tudo tem isso, resto de uma supernova ou estrela.</p>
+                <p>> Mas e a física, e a... gravidade? Seria o inverso dele, não. Seria objetos que não cabem na física real, por isso o nome Lixo-Físico. A FaC o chamou esse Lixo-Físico de Class-PNF ou Projeto Não Físico, onde irão cuidar e desvendar e se é possível conter.</p>
             </div>
 
-            <div class="document-block">
-                <div class="doc-header">ESTRUTURA_E_AMBIENTE</div>
-                <p>> É um labirinto finito simplesmente.</p>
-                <p>> Algumas salas são iguais a escritórios, outras possuem piso liso, parede de chumbo ou plástico.</p>
-                <p>> Possui um zumbido agudo nas lâmpadas de LED no teto.</p>
-                <p>> As salas não mudam, elas são fixas.</p>
-            </div>
-
-            <div class="document-block">
-                <div class="doc-header">ENTIDADE: O NÃO-BUGADO</div>
-                <p>> Ao todo a única "entidade" encontrada foi o Não-Bugado.</p>
-                <p>> É uma espécie de glitch que tem em algumas salas com sofás.</p>
-                <p>> Se você tocar neles com aparência glitch, você morre, ou melhor, some.</p>
-                <p>> É bem fácil de conter, só são algumas salas específicas já que elas não mudam.</p>
+            <div class="document-block" style="border-color: var(--class-zp);">
+                <div class="doc-header" style="color: var(--class-zp);">ENTIDADES_E_AMBIENTE</div>
+                <p>> Ao todo a única "entidade" encontrada foi o Não-Bugado, é uma espécie de glitch que tem em algumas salas com sofás. Se você tocar neles com aparência glitch, você morre, ou melhor some.</p>
+                <p>> Mas é bem fácil de conter, só são algumas salas específicas, já que elas não mudam e sim, são fixas.</p>
+                <p>> Algumas salas iguais escritório outras com piso liso, parede de chumbo ou plástico, com zumbido agudo nas lâmpadas de led no teto, um labirinto finito simplesmente.</p>
             </div>
         </section>
 
     </main>
 
     <script>
-        // Sistema de navegação
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', function(e) {
                 document.querySelectorAll('.nav-item').forEach(i => {
@@ -355,7 +317,6 @@
             });
         });
 
-        // Inicia na home
         document.querySelectorAll('section').forEach((s, index) => {
             if(index !== 0) s.style.display = 'none';
         });
